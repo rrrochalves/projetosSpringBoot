@@ -1,8 +1,11 @@
 package com.alves.stw.adapters.in;
 
 
+import com.alves.stw.adapters.out.OpenAiChatApi;
 import com.alves.stw.application.AskChampionUseCase;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,10 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/champions")
 public record AskChampionsRestController(AskChampionUseCase useCase) {
 
+    @CrossOrigin
     @PostMapping("/{id}/ask")
     public AskChampionResponse askChampion(@PathVariable Long id, @RequestBody AskChampionRequest request) {
         String answer = useCase().askChampion(id, request.question);
-
         return new AskChampionResponse(answer);
     }
 
