@@ -1,5 +1,6 @@
 package com.alves.stw;
 
+import com.alves.stw.application.AskChampionUseCase;
 import com.alves.stw.application.ListChampionsUseCase;
 import com.alves.stw.domain.ports.ChampionsRepository;
 import org.springframework.boot.SpringApplication;
@@ -16,5 +17,10 @@ public class Application {
 	@Bean
 	public ListChampionsUseCase provideListChampionsUseCase(ChampionsRepository repository) {
 		return new ListChampionsUseCase((repository));
+	}
+
+	@Bean
+	public AskChampionUseCase provideAskChampionUseCase(ChampionsRepository repository) {
+		return new AskChampionUseCase((repository));
 	}
 }

@@ -6,4 +6,12 @@ public record Champion(
         String role,
         String lore,
         String imageUrl) {
+    public String generateContextByQuestion(String question) {
+        return """
+                Pergunta: %s
+                Nome do campeão: %s
+                Função: %s
+                Lore (historia): %s
+                """.formatted(question, this.name, this.role, this.lore);
+    }
 }
